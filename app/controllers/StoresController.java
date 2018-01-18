@@ -18,21 +18,12 @@ public class StoresController extends Controller {
 	
 	public StoresController() {
 		System.out.println("StoresController");
-		
-		/*try {
-			ObjectMapper mapper = new ObjectMapper();
-			stores = mapper.readValue(new URL("http://sonaesodetapi.herokuapp.com/api/v3/store?shoppingId=1"), 
-					Store[].class);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		this.loadStores();
 		
 		
 	}
 	
-	public Result initStores() {
+	private void loadStores() {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			stores = mapper.readValue(new URL("http://sonaesodetapi.herokuapp.com/api/v3/store?shoppingId=1"), 
@@ -42,8 +33,11 @@ public class StoresController extends Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return ok("Stores Loaded");
+	}
+	
+	public Result reloadStores() {
+		this.loadStores();
+		return ok("Stores Reloaded!");
 	}
 
 	public Result getStores() {

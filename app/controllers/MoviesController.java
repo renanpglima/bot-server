@@ -18,22 +18,16 @@ public class MoviesController extends Controller {
 	private Movie[] movies;
 	
 	public MoviesController() {
-		
 		System.out.println("MoviesController");
-		
-		/*try {
-			ObjectMapper mapper = new ObjectMapper();
-			movies = mapper.readValue(new URL("http://sonaesodetapi.herokuapp.com/api/v3/movie?shoppingId=1"), 
-					Movie[].class);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+		this.loadMovies();	
 	}
 	
-	public Result initMovies() {
+	public Result reloadMovies() {
+		this.loadMovies();
+		return ok("Movies Reloaded");
+	}
+	
+	private void loadMovies() {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			movies = mapper.readValue(new URL("http://sonaesodetapi.herokuapp.com/api/v3/movie?shoppingId=1"), 
@@ -43,8 +37,6 @@ public class MoviesController extends Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return ok("Movies Loaded");
 	}
 	
 	

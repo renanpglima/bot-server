@@ -5,8 +5,8 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
-GET     /initStores   controllers.StoresController.initStores()
-GET     /initMovies   controllers.MoviesController.initMovies()
+GET     /reloadStores   controllers.StoresController.reloadStores()
+GET     /reloadMovies   controllers.MoviesController.reloadMovies()
 
 #Stores
 #list of all stores
